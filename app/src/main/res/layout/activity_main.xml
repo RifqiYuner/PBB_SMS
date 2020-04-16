@@ -20,16 +20,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/activity_main"
         android:layout_marginBottom="16dp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        app:layout_constraintLeft_toLeftOf="@+id/btnSendSMS"
-        app:layout_constraintTop_toBottomOf="@+id/btnSendSMS"
-        android:layout_marginTop="8dp"
-        app:layout_constraintRight_toRightOf="@+id/btnSendSMS"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"
-        android:layout_marginBottom="16dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

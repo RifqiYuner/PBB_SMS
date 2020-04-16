@@ -12,23 +12,13 @@ import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
+/* Nama : Rifqi Yuner
+   Kelas : 2A
+   NIM : 181511030
+ */
 public class MainActivity extends AppCompatActivity {
     final private int REQUEST_SEND_SMS = 123;
-    final private int REQUEST_REC_SMS = 321;
-    BroadcastReceiver smsSentReceiver;
-    IntentFilter intentFilter;
-
-    private BroadcastReceiver intentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //---display the SMS received in the TextView---
-            TextView SMSes = (TextView) findViewById(R.id.textView);
-            SMSes.setText(intent.getExtras().getString("sms"));
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,39 +33,16 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.SEND_SMS},
                     REQUEST_SEND_SMS);
         }
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.RECEIVE_SMS)
-                != PackageManager.PERMISSION_GRANTED ) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.RECEIVE_SMS},
-                    REQUEST_REC_SMS);
-        }
-
-        intentFilter = new IntentFilter();
-        intentFilter.addAction("SMS_RECEIVED_ACTION");
-
-        registerReceiver(intentReceiver, intentFilter);
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case REQUEST_SEND_SMS:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "SEND Permission Granted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "SEND Permission Denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case REQUEST_REC_SMS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "RECEIVE Permission Granted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "RECEIVE Permission Denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -85,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View v) {
 
-        sendSMS("081284461396L", "This Program PBB Sending and Receive SMS Coy"); //ditambahkan L dikarenakan integer terlalu besar sehingga harus ditambahkan L yang menandakan Long Integer.
+        sendSMS("081284461396L", "Program PBB 16 April 2020"); //ditambahkan L dikarenakan integer terlalu besar sehingga harus ditambahkan L yang menandakan Long Integer.
 
     }
-
 
     private void sendSMS(String phoneNumber, String message)
     {

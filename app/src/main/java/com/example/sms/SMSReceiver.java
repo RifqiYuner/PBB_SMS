@@ -24,6 +24,8 @@ public class SMSReceiver extends BroadcastReceiver {
             msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent);
 
             for (int i=0; i<msgs.length; i++){
+                str += msgs[i].getOriginatingAddress().toString();
+                str += "\nWith message: ";
                 str += msgs[i].getMessageBody().toString();
             }
 
@@ -31,15 +33,7 @@ public class SMSReceiver extends BroadcastReceiver {
             Log.d("SMSReceiver", str);
 
 
-            Intent mainActivityIntent = new Intent(context, MainActivity.class);
-            mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(mainActivityIntent);
-
-            Intent broadcastIntent = new Intent();
-            broadcastIntent.setAction("SMS_RECEIVED_ACTION");
-            broadcastIntent.putExtra("sms", str);
-            context.sendBroadcast(broadcastIntent);
-
         }
+
     }
 }
