@@ -14,7 +14,8 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/*RIFQI YUNER (181511030)
+* Date : 16/4/2020*/
 public class MainActivity extends AppCompatActivity {
     final private int REQUEST_SEND_SMS = 123;
     final private int REQUEST_REC_SMS = 321;
