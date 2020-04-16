@@ -19,7 +19,7 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
     final private int REQUEST_SEND_SMS = 123;
-
+    final private int REQUEST_REC_SMS = 321;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.SEND_SMS},
                     REQUEST_SEND_SMS);
         }
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECEIVE_SMS)
+                != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECEIVE_SMS},
+                    REQUEST_REC_SMS);
+        }
     }
 
     @Override
@@ -43,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case REQUEST_REC_SMS:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(MainActivity.this, "RECEIVE Permission Granted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "RECEIVE Permission Denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:

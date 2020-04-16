@@ -31,7 +31,7 @@ public class SMSReceiver extends BroadcastReceiver {
 
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
             Log.d("SMSReceiver", str);
-
+            this.abortBroadcast();
 
         }
 
